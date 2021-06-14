@@ -1,0 +1,54 @@
+{% extends 'app/base.html' %} {% load static %}
+{% block title %}Cart{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+  <div class="row">
+    <h1 class="text-center mb-5 fw-blod">Search Result Found</h1>
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+            {% if post %}
+                {% for item in post %}
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-3 text-center align-self-center">
+                            <a href="{% url 'product-detail' item.id %}">
+                                <img
+                                src="{{ item.product_image.url }}"
+                                alt="Pants"
+                                srcset=""
+                                class="img-fluid img-thumbnail shadow-sm"
+                                height="150"
+                                width="150"
+                                />
+                            </a>
+                        </div>
+                        <div class="col-sm-9">
+                        <div>
+                            <a href="{% url 'product-detail' item.id %}">
+                                <h5>{{ item.title }}</h5>
+                                <p class="mb-2 text-muted small">
+                                    {{ item.description }}
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <p class="mb-0">
+                                        <span>
+                                            <strong>Tk. {{ item.discounted_price }}</strong>
+                                        </span>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="fw-bold">There Is nothings</p>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock main-content %}
+</div>
